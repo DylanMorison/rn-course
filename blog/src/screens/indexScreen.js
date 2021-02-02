@@ -8,8 +8,6 @@ const indexScreen = ({ navigation }) => {
 
 	return (
 		<View>
-			<Text>indexScreen</Text>
-			<Button title="Add Post" onPress={addBlogPost} color="#841584" />
 			<FlatList
 				data={state}
 				keyExtractor={(blogPost) => blogPost.title}
