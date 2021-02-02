@@ -1,24 +1,33 @@
 import React, { useContext } from "react";
-import { StyleSheet, Text, View, FlatList, Button } from "react-native";
+import { StyleSheet, Text, View, FlatList, Button, TouchableOpacity } from "react-native";
 import { Context as BlogContext } from "../context/BlogContext";
 import { Feather } from "@expo/vector-icons";
 
-// This code is from lecture 137 of Stephen's rn course
-
-const indexScreen = () => {
-	const { state, addBlogPost } = useContext(BlogContext);
+const indexScreen = ({ navigation }) => {
+	const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);
 
 	return (
 		<View>
 			<Text>indexScreen</Text>
-			{/* Neither Button is triggering onPress */}
 			<Button title="Add Post" onPress={addBlogPost} color="#841584" />
-			<Button title="Add Post" onPress={() => console.log("Adding Post!")} />
 			<FlatList
 				data={state}
 				keyExtractor={(blogPost) => blogPost.title}
 				renderItem={({ item }) => {
-					return <Text>{item.title}</Text>;
+					return (
+						<TouchableOpacity
+							onPress={() => navigation.navigate("Show", { id: item.id })}
+						>
+							<View style={styles.row}>
+								<Text style={styles.title}>
+									{item.title} - {item.id}
+								</Text>
+								<TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+									<Feather style={styles.icon} name="trash" />
+								</TouchableOpacity>
+							</View>
+						</TouchableOpacity>
+					);
 				}}
 			/>
 		</View>
@@ -27,4 +36,33 @@ const indexScreen = () => {
 
 export default indexScreen;
 
-const styles = StyleSheet.create({});
+indexScreen.navigationOptions = ({ navigation }) => {
+	return {
+		headerRight: () => (
+			<TouchableOpacity onPress={() => navigation.navigate("Create")}>
+				<Feather name="plus" size={30} style={styles.plusIcon} />
+			</TouchableOpacity>
+		)
+	};
+};
+
+const styles = StyleSheet.create({
+	row: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		paddingVertical: 20,
+		borderBottomWidth: 1,
+		borderColor: "grey",
+		marginHorizontal: 5
+	},
+	title: {
+		fontSize: 18
+	},
+	icon: {
+		fontSize: 24,
+		paddingRight: 15
+	},
+	plusIcon: {
+		marginRight: 15
+	}
+});
