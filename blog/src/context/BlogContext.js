@@ -10,8 +10,9 @@ const blogReducer = (state, action) => {
 };
 
 const addBlogPost = (dispatch) => {
-	console.log("hi");
 	return () => {
+		console.log("hi");
+
 		dispatch({ type: "add_blogpost" });
 	};
 };
