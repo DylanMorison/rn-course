@@ -3,3 +3,4 @@ food/src/api/yelp.js
 blog/node_modules
 blog/.expo
 blog/.expo-shared
+jsonserver/node_modules
