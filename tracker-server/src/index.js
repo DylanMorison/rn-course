@@ -1,3 +1,4 @@
+import User from "../src/models/User.js";
 import express from "express";
 import { connectDB } from "../config/db.js";
 import authRoutes from "./routes/authRoutes.js";

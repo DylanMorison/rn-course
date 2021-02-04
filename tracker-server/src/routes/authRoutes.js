@@ -1,4 +1,6 @@
 import express from "express";
+import mongoose from "mongoose";
+const User = mongoose.model("User");
 
 const router = express.Router();
 
