@@ -1,13 +1,13 @@
 import express from "express";
-import mongoose from "mongoose";
 import { connectDB } from "../config/db.js";
-
-const app = express();
+import authRoutes from "./routes/authRoutes.js";
 
 connectDB();
 
-app.get("/", (req, res) => {
-	res.send("hi!");
-});
+const app = express();
+const jsonNoExtended = express.json({ extended: false });
+
+app.use(jsonNoExtended);
+app.use(authRoutes);
 
 app.listen(3000, () => console.log("Listening on port 3000!"));
