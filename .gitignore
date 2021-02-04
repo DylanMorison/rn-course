@@ -6,3 +6,6 @@ blog/.expo-shared
 jsonserver/node_modules
 tracker-server/node_modules
 tracker-server/config/default.json
+tracks/node_modules
+tracks/.expo
+tracks/.expo-shared
