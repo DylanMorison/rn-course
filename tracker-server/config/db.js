@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import config from "config";
 const mongoURI = config.get("mongoURI");
 
-export const connectDB = async () => {
+export default async () => {
 	try {
 		await mongoose.connect(
 			mongoURI,
