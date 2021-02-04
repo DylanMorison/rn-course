@@ -21,4 +21,28 @@ router.post("/signup", async (req, res) => {
 	}
 });
 
+router.post("/signin", async (req, res) => {
+	const { email, password } = req.body;
+
+	if (!email || !password) {
+		return res.status(422).send({ error: "Missing Email or Password" });
+	}
+
+	try {
+		const user = await User.findOne({ email });
+
+		if (!user) {
+			return res.status(402).send({ error: "Email Not Found" });
+		}
+
+		await user.comparePassword(password);
+
+		const token = jwt.sign({ userId: user._id }, config.get("jwtSecret"));
+
+		res.send({ token });
+	} catch (error) {
+		return res.status(422).send({ error: "Invalid Password or Email" });
+	}
+});
+
 export default router;
