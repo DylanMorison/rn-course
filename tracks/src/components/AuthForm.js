@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		marginBottom: 250,
-		marginHorizontal: 10
+		marginHorizontal: 10,
+		maxHeight: 100
 	},
 	titleStyle: {
 		textAlign: "center"
