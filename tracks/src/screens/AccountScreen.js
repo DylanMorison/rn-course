@@ -8,15 +8,22 @@ const AccountScreen = () => {
 	const { signout } = useContext(AuthContext);
 
 	return (
-		<>
+		<View style={styles.container}>
 			<Text>AccountScreen</Text>
 			<Spacer>
 				<Button title="Sign Out" onPress={signout} />
 			</Spacer>
-		</>
+		</View>
 	);
 };
 
 export default AccountScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: "column",
+		borderWidth: 0,
+		justifyContent: "flex-start",
+		top: 50
+	}
+});
